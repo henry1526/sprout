@@ -3,8 +3,8 @@
   <component name="DataSourceManagerImpl" format="xml" hash="2955480510">
     <data-source source="LOCAL" name="Django default" uuid="243774bc-2b79-4181-aee4-7620a192907c">
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql:recipe-organizer-seed</jdbc-url>
-      <user-name>recipe_organizer</user-name>
+      <jdbc-url>jdbc:postgresql:recipeorganizer</jdbc-url>
+      <user-name>recipeorganizer</user-name>
       <user-password>dff9df99df99dfce</user-password>
       <libraries>
         <library>
