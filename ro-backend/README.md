@@ -4,6 +4,21 @@ Dojo Dev Camp - Django/Angular Project Template
 
 A project template for AngularJS, Django 1.6 and Heroku.
 
+Cloning the Repository to GitHub
+--------------------------------
+- Create an empty repository at GitHub (let's call it test)
+- Open up your terminal
+- Run the following commands
+
+```
+cd /tmp # make sure this is a directory that exists
+git clone --bare git@github.com:DojoDevCamp/django_angular_pt.git
+cd django_angular_pt.git
+git push --mirror git@github.com:test.git # this will be different for you
+cd ..
+rm -rf django_angular_pt.git
+```
+
 Initial setup
 -------------
 
@@ -20,21 +35,6 @@ python manage.py syncdb
 python manage.py migrate
 python manage.py createsuperuser
 python manage.py schemamigration public —-auto // Nothing seems to have changed.
-
-Cloning the Repository to GitHub
---------------------------------
-- Create an empty repository at GitHub (let's call it test)
-- Open up your terminal
-- Run the following commands
-
-```
-cd /tmp # make sure this is a directory that exists
-git clone --bare git@github.com:DojoDevCamp/django_angular_pt.git
-cd django_angular_pt.git
-git push --mirror git@github.com:test.git # this will be different for you
-cd ..
-rm -rf django_angular_pt.git
-```
 
 Deploying to Heroku
 -------------------
