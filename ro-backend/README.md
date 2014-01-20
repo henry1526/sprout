@@ -4,14 +4,22 @@ Dojo Dev Camp - Django/Angular Project Template
 
 A project template for AngularJS, Django 1.6 and Heroku.
 
-Setting up your database:
+Initial setup
+-------------
 
-python manage.py schemamigration public —init
+Create your virtual environment.
+In your back end folder, run "pip install -r requirements.txt."
+In your front end folder, run "npm install."
+
+Setting up your database
+-------------------------
+
+python manage.py schemamigration public —-init
 python manage.py syncdb
      Select "no." Do not create a superuser at this time.
 python manage.py migrate
 python manage.py createsuperuser
-python manage.py schemamigration public —auto // Nothing seems to have changed.
+python manage.py schemamigration public —-auto // Nothing seems to have changed.
 
 Cloning the Repository to GitHub
 --------------------------------
