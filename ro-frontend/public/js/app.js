@@ -22,7 +22,7 @@ var roApp = angular.module('roApp', [
 
             RestangularProvider.setBaseUrl('http://localhost:8001');
     }])
-    .run(['$location', '$rootScope', 'baseTitle', '$http', 'Restangular', function ($location, $rootScope, baseTitle, $http, RestangularProvider) {
+    .run(['$location', '$rootScope', 'baseTitle', '$http', 'Restangular', 'SessionService', function ($location, $rootScope, baseTitle, $http, RestangularProvider, SessionService) {
         $rootScope.$on('$routeChangeSuccess', function (event, current) {
             // Check to see if the 'title' attribute exists on the route
             if (current.hasOwnProperty('$route')) {
