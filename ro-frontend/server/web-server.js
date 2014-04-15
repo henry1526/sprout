@@ -96,7 +96,6 @@ StaticServlet.prototype.handleRequest = function(req, res) {
   fs.stat(path, function(err, stat) {
     if (err)
       return self.sendMissing_(req, res, path);
-      console.log(path);
     if (stat.isDirectory()) {
         if (path == './') {
             res.writeHead(301, {
