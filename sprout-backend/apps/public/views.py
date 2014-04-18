@@ -7,6 +7,8 @@ from django.core.context_processors import csrf
 from rest_framework.response import Response
 from rest_framework import status
 
+from rest_framework.authtoken.views import ObtainAuthToken
+
 from rest_framework import generics
 from rest_framework import permissions
 
@@ -37,35 +39,62 @@ class UserDetail(generics.RetrieveAPIView):
     serializer_class = UserSerializer
 
 
-class AddressList(generics.ListCreateAPIView):
-    """List all addresses or create a new Address"""
-    permission_classes = (permissions.IsAuthenticated,)
-    model = Address
-    serializer_class = AddressSerializer
+# class AddressList(generics.ListCreateAPIView):
+#     """List all addresses or create a new Address"""
+#     permission_classes = (permissions.IsAuthenticated,)
+#     model = Address
+#     serializer_class = AddressSerializer
 
 
-class AddressDetail(generics.RetrieveUpdateDestroyAPIView):
-    """Retrieve, update or delete an Address."""
-    permission_classes = (permissions.IsAuthenticated,)
-    model = Address
-    serializer_class = AddressSerializer
+# class AddressDetail(generics.RetrieveUpdateDestroyAPIView):
+#     """Retrieve, update or delete an Address."""
+#     permission_classes = (permissions.IsAuthenticated,)
+#     model = Address
+#     serializer_class = AddressSerializer
 
-@api_view(('POST',))
-def authenticate(request):
-    c = {}
-    c.update(csrf(request))
+class ObtainUserAuthToken(ObtainAuthToken):
+    '''
+    Extend the ObtainAuthToken class as defined by the
+    REST Framework. This is so we can do our own authentication
+    and build our own response dictionary.
+    '''
 
-    username = request.POST.get('username', request.DATA['username'])  # emtpy string if no username exists
-    password = request.POST.get('password', request.DATA['password'])  # empty string if no password exists
+    def post(self, request):
+        '''
+        A username and password are POST'ed to this view.
+        Here we will check if this username and password has a REST Framework Token
+        (which was created in the @receiver of models.py)
 
-    user = auth.authenticate(username=username, password=password)
+        If authenticated, send back the token for the angular app to store as a cookie
+        '''
 
-    if user is not None:
-        auth.login(request, user)
-        return Response(UserSerializer(user).data, status=status.HTTP_200_OK)
-    else:
-        c['message'] = 'Login failed!'
-        return render_to_response('partials/login.tpl.html', c)
+        # Authenticate the email address after its been all lowercased
+        email = request.DATA['username']
+        lowercase_email = email.lower()
+        request.DATA['username'] = lowercase_email
+
+        # read in the data that was sent up from the angular app
+        serializer = self.serializer_class(data=request.DATA)
+
+        # Is there a Token connected to this user?
+        if serializer.is_valid():
+            authenticated_user = serializer.object['user']
+            token, created = Token.objects.get_or_create(user=authenticated_user)
+
+            # build a dictionary to send back to the angular app.
+            # the key: value pairs listed here will be available to
+            # the frontend angular app
+            user_response = {
+                'id': authenticated_user.id,
+                'username': authenticated_user.username,
+                'first_name': authenticated_user.first_name,
+                'last_name': authenticated_user.last_name,
+                'token': token.key
+            }
+
+            return Response(user_response)
+
+        return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
 
 
 def logout(request):
