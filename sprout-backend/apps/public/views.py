@@ -18,12 +18,6 @@ from .serializers import *
 
 
 # Create your views here.
-class JSONResponse(HttpResponse):
-    def __init__(self, data, **kwargs):
-        content = JSONRenderer().render(data)
-        kwargs['content_type'] = 'application/json'
-        super(JSONResponse, self).__init__(content, **kwargs)
-
 
 class UserList(generics.ListCreateAPIView):
     """List all users or create a new User"""
@@ -68,6 +62,14 @@ class ObtainUserAuthToken(ObtainAuthToken):
         If authenticated, send back the token for the angular app to store as a cookie
         '''
 
+        ##
+        ## In our authentication scheme, we are actually storing the email address
+        ## in the username field. We do this because we wanted the user to login using
+        ## their email address (we don't have to do this). We have to use the username
+        ## field because that field is unique -- no two accounts can have the same
+        ## username, while the email field is not unique
+        ##
+
         # Authenticate the email address after its been all lowercased
         email = request.DATA['username']
         lowercase_email = email.lower()
@@ -95,8 +97,3 @@ class ObtainUserAuthToken(ObtainAuthToken):
             return Response(user_response)
 
         return Response(serializer.errors, status=status.HTTP_401_UNAUTHORIZED)
-
-
-def logout(request):
-    auth.logout(request)
-    return JSONResponse([{'success': 'Logged out!'}])

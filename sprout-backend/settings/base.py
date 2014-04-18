@@ -80,7 +80,7 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'rest_framework',
     'south',
-    'longerusername',
+    'longerusername', # After installing this app, run south migrations
     'corsheaders',
 )
 
