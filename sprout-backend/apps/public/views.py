@@ -33,19 +33,6 @@ class UserDetail(generics.RetrieveAPIView):
     serializer_class = UserSerializer
 
 
-# class AddressList(generics.ListCreateAPIView):
-#     """List all addresses or create a new Address"""
-#     permission_classes = (permissions.IsAuthenticated,)
-#     model = Address
-#     serializer_class = AddressSerializer
-
-
-# class AddressDetail(generics.RetrieveUpdateDestroyAPIView):
-#     """Retrieve, update or delete an Address."""
-#     permission_classes = (permissions.IsAuthenticated,)
-#     model = Address
-#     serializer_class = AddressSerializer
-
 class ObtainUserAuthToken(ObtainAuthToken):
     '''
     Extend the ObtainAuthToken class as defined by the
