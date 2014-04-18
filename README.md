@@ -26,7 +26,7 @@ For Windows:
 1. cd into sprout-backend
 2. create a virtualenv for the project from PyCharm > Preferences > Project Interpreter > Python Interpreters.
 3. activate your new virtualenv in the git-bash terminal.
-	-- to do this, note the path that your new virtualenv was created in and source the activate script. It will be something like (source C:/Users/*your_username*/.virtualenvs/sprout/Scripts/activate)
+	-- to do this, note the path that your new virtualenv was created in and source the activate script. It will be something like `source C:/Users/*your_username*/.virtualenvs/sprout/Scripts/activate`
 4. run terminal command `pip install -r requirements/dev.txt`
 5. create a Django run configuration in PyCharm
 6. cd into sprout-frontend
