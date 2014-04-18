@@ -3,7 +3,7 @@
 /* jasmine specs for filters go here */
 
 describe('filter', function() {
-  beforeEach(module('roApp.filters'));
+  beforeEach(module('sproutApp.filters'));
 
 
   describe('interpolate', function() {

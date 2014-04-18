@@ -1,7 +1,7 @@
 'use strict';
 
 /* Directives */
-angular.module('roApp.directives', [])
+angular.module('sproutApp.directives', [])
     .directive('login', function ($http, $rootScope, SessionService) {
         return {
             restrict: 'A',

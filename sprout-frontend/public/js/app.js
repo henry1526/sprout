@@ -1,13 +1,13 @@
 'use strict';
 
-var roApp = angular.module('roApp', [
+var sproutApp = angular.module('sproutApp', [
         'ngRoute',
         'restangular',
-        'roApp.services',
-        'roApp.controllers',
-        'roApp.constants',
-        'roApp.filters',
-        'roApp.directives'
+        'sproutApp.services',
+        'sproutApp.controllers',
+        'sproutApp.constants',
+        'sproutApp.filters',
+        'sproutApp.directives'
     ])
     .config(['$routeProvider', 'RestangularProvider', function($routeProvider, RestangularProvider) {
         $routeProvider

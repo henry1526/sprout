@@ -6,7 +6,7 @@ describe('HomeController', function () {
     var scope; //we'll use this scope in our tests
 
     //mock Application to allow us to inject our own dependencies
-    beforeEach(angular.mock.module('roApp.controllers'));
+    beforeEach(angular.mock.module('sproutApp.controllers'));
 
     //mock the controller for the same reason and include $rootScope and $controller
     beforeEach(angular.mock.inject(function ($rootScope, $controller) {

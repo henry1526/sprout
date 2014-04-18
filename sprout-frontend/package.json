@@ -1,7 +1,7 @@
 {
-    "name": "recipe-organizer-seed",
-    "description": "A starter project for the Recipe Organizer project",
-    "repository": "https://github.com/dstephenson/recipe-organizer-seed.git",
+    "name": "sprout",
+    "description": "A repo for Clark's Sprout project",
+    "repository": "https://github.com/DojoDevCamp/sprout.git",
     "engines": {
         "node": "~0.10.23"
     },

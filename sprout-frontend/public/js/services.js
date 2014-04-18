@@ -5,7 +5,7 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('roApp.services', ['angularLocalStorage'])
+angular.module('sproutApp.services', ['angularLocalStorage'])
     .factory('SessionService', function ($http, storage) {
         return {
             saveSession: function (data) {

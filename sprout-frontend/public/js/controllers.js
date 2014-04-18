@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('roApp.controllers', [])
+angular.module('sproutApp.controllers', [])
     .controller('BaseController', ['$scope', '$window', 'brand', 'SessionService', function($scope, $window, brand, SessionService) {
         $scope.brand = brand;
 
