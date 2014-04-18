@@ -8,15 +8,12 @@ angular.module('sproutApp.directives', [])
             templateUrl: 'partials/login.tpl.html',
             link: function (scope, elem, attrs) {
                 elem.bind('submit', function () {
-                    console.log('User: ' + scope.username);
-                    console.log('Password: ' + scope.password);
 
                     var user_data = {
                         "username": scope.username,
                         "password": scope.password
                     };
 
-                    //$http.post(constants.serverAddress + "api-token-auth", user_data)
                     $http.post("http://localhost:8001/api-token-auth/", user_data)
                         .success(function (response) {
                             $http.defaults.headers.common['Authorization'] = 'Token ' + response.token;
