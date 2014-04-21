@@ -45,8 +45,8 @@ class Item(models.Model):
     part_no = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
-    item_type_id = models.IntegerField()
-    template_id = models.IntegerField()
+    item_type = models.ForeignKey(ItemType)
+    template = models.ForeignKey(Template) # Was called template_id
     is_inventory = models.BooleanField()
     is_figure_cost = models.BooleanField()
     is_warehouse = models.BooleanField()
@@ -54,14 +54,14 @@ class Item(models.Model):
     is_template = models.BooleanField()
     is_direct_cost = models.BooleanField()
     is_update = models.BooleanField()
-    supplier_id = models.IntegerField()
+    supplier = models.ForeignKey(Supplier) # Was called supplier_id
     mpn = models.CharField(max_length=50)
     cost = models.IntegerField()
     purchase_amt = models.IntegerField()
     purchase_unit_id = models.IntegerField()
-    dens_num = models.IntegerField()
-    dens_num_unit_id = models.IntegerField()
-    dens_den_unit_id = models.IntegerField()
+    dens_num = models.IntegerField() # Explain (need to ForeignKey)
+    dens_num_unit_id = models.IntegerField() # Explain (need to ForeignKey)
+    dens_den_unit_id = models.IntegerField() # Explain (need to ForeignKey)
     drawings = models.CharField(max_length=50)
 #    thumbnail = models.ImageField()
     attribute_id_1 = models.IntegerField()
@@ -74,7 +74,7 @@ class Item(models.Model):
     width = models.IntegerField()
     depth = models.IntegerField()
     weight = models.IntegerField()
-    revision_id = models.IntegerField()
+    revision = models.ForeignKey(Revision)
     lead_time = models.IntegerField()
     create_date = models.DateTimeField()
     moq = models.IntegerField()
@@ -96,3 +96,33 @@ class Item(models.Model):
     transfer_sheet_id = models.IntegerField()
     color = models.CharField(max_length=50)
     critical_features = models.CharField(max_length=50)
+
+
+class Template(models.Model):
+    pass
+
+
+class ItemType(models.Model):
+    name = models.CharField()
+    is_template = models.BooleanField()
+    is_recoup = models.BooleanField()
+    is_inventory = models.BooleanField()
+    abb = models.CharField()
+    # qb_parent_account = models.CharField()
+    # qb_cogs_account =
+    # qb_asset_account =
+    # qb_sales_account =
+    # qb_track_qty =
+    # qb_force_val =
+    # exp_to_qb =
+    # timestamp = models.? #==== What is this for? TimeField or DateTimeField?====#
+    is_non_inventory_item = models.BooleanField()
+
+
+class Revision(models.Model):
+    pass
+
+
+class Supplier(models.Model):
+    pass
+
