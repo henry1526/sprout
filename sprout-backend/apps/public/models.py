@@ -41,7 +41,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 #     class Meta:
 #         verbose_name_plural = 'Addresses'
 
-class Items(models.Model):
+class Item(models.Model):
     part_no = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
