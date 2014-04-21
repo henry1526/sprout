@@ -17,6 +17,18 @@ from .models import *
 from .serializers import *
 
 
+class ItemList(generics.ListCreateAPIView):
+    # permission_classes = (permissions.IsAuthenticated,)
+    model = Item
+    serializer_class = ItemSerializer
+    queryset = Item.objects.all()
+
+
+class ItemDetail(generics.RetrieveUpdateDestroyAPIView):
+    # permission_classes = (permissions.IsAuthenticated,)
+    model = Item
+    serializer_class = ItemSerializer
+    queryset = Item.objects.all()
 # Create your views here.
 
 class UserList(generics.ListCreateAPIView):

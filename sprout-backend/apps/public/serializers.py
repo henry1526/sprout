@@ -10,6 +10,11 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username')
 
 
+class ItemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+
+
 # class AddressSerializer(serializers.ModelSerializer):
 #     """Serializes an Address object"""
 #     class Meta:

@@ -10,6 +10,8 @@ urlpatterns = patterns(
 
     url(r'^users$', UserList.as_view(), name='user-list'),
     url(r'^users/(?P<pk>[0-9]+)$', UserDetail.as_view(), name='user-detail'),
+    url(r'^items$', ItemList.as_view(), name='item-list'),
+    url(r'^items/(?P<pk>[0-9]+)$', ItemDetail.as_view(), name='item-detail')
 )
 
 urlpatterns += patterns('',
