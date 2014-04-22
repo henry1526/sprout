@@ -17,6 +17,11 @@ var sproutApp = angular.module('sproutApp', [
                 controller: 'HomeController',
                 title: 'Home Page'
             })
+            .when('/items', {
+                templateUrl: 'partials/items.tpl.html',
+                controller: 'ItemsController',
+                title: 'Items'
+            })
             .otherwise({
                 redirectTo: '/home'
             });

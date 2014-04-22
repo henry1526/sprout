@@ -20,4 +20,23 @@ angular.module('sproutApp.controllers', [])
             console.log('event has been broadcast to Home Controller');
             $scope.session = SessionService.getSession();
         });
-    }]);
+    }])
+    .controller('ItemsController', function($scope, SessionService, Restangular) {
+        $scope.session = SessionService.getSession();
+
+        var item1 = {
+                name: "Item one",
+                number: "12"
+        };
+
+        var item2 = {
+                name: "Item two",
+                number: "24"
+        };
+
+//        $scope.items = [item1, item2];
+
+        Restangular.all('items').getList().then(function (data) {
+            $scope.items = data;
+        });
+    });

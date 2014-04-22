@@ -45,60 +45,9 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 class Item(models.Model):
     part_no = models.CharField(max_length=50)
     name = models.CharField(max_length=50)
-    location = models.CharField(max_length=50)
-    item_type = models.ForeignKey("ItemType")
-    template = models.ForeignKey("Template") # Was called template_id
-    is_inventory = models.BooleanField()
-    is_figure_cost = models.BooleanField()
-    is_warehouse = models.BooleanField()
-    is_active = models.BooleanField()
-    is_template = models.BooleanField()
-    is_direct_cost = models.BooleanField()
-    is_update = models.BooleanField()
-    supplier = models.ForeignKey("Supplier") # Was called supplier_id
-    mpn = models.CharField(max_length=50)
-    cost = models.IntegerField()
-    purchase_amt = models.IntegerField()
-    purchase_unit_id = models.IntegerField()
-    dens_num = models.IntegerField() # Explain (need to ForeignKey)
-    dens_num_unit_id = models.IntegerField() # Explain (need to ForeignKey)
-    dens_den_unit_id = models.IntegerField() # Explain (need to ForeignKey)
-    drawings = models.CharField(max_length=50)
-#    thumbnail = models.ImageField()
-    attribute_id_1 = models.IntegerField()
-    attribute_id_2 = models.IntegerField()
-    attribute_id_3 = models.IntegerField()
-    color = models.ForeignKey("Color") # Added this. May be better than having vague "attributes"(?)
-    material = models.ForeignKey("Material") # Added this. May be better than having vague "attributes"(?)
-    # attribute_type_id_1 = models.ForeignKey("AttributeType")
-    # attribute_type_id_2 = models.ForeignKey("AttributeType")
-    # attribute_type_id_3 = models.ForeignKey("AttributeType")
-    height = models.IntegerField()
-    width = models.IntegerField()
-    depth = models.IntegerField()
-    weight = models.IntegerField()
-    revision = models.ForeignKey("Revision")
-    lead_time = models.IntegerField()
-    create_date = models.DateTimeField()
-    moq = models.IntegerField()
-    demand_qrt = models.IntegerField()
-    min_on_hand = models.IntegerField()
-    min_ord_freq = models.IntegerField()
-    demand_dly = models.IntegerField()
-    low_point = models.IntegerField()
-    reorder_point = models.IntegerField()
-    reorder_qty = models.IntegerField()
-    description = models.CharField(max_length=50)
-    is_recomb = models.BooleanField()
-    recomb_ratio = models.IntegerField()
-    common_name = models.CharField(max_length=50)
-    inventory_scaler = models.IntegerField()
-    volume = models.IntegerField()
-#    image_line = models.???         #==== What is this for? ====#
-#    timestamp = models.???          #==== What is this for? ====#
-    transfer_sheet_id = models.IntegerField()
-    color = models.CharField(max_length=50)
-    critical_features = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return "Name: " + self.name + ", part number: " + self.part_no
 
 
 class Template(models.Model):
