@@ -7,23 +7,39 @@ var sproutApp = angular.module('sproutApp', [
         'sproutApp.controllers',
         'sproutApp.constants',
         'sproutApp.filters',
-        'sproutApp.directives'
+        'sproutApp.directives',
+        'ui.bootstrap'
     ])
 
     .config(['$routeProvider', 'RestangularProvider', function($routeProvider, RestangularProvider) {
         $routeProvider
-            .when('/home', {
-                templateUrl: 'partials/home.tpl.html',
-                controller: 'HomeController',
-                title: 'Home Page'
+//            .when('/home', {
+//                templateUrl: 'partials/home.tpl.html',
+//                controller: 'HomeController',
+//                title: 'Home Page'
+//            })
+            .when('/recipes', {
+                templateUrl: 'partials/recipes.tpl.html',
+                controller: 'RecipeController',
+                title: 'Recipes'
             })
-            .when('/items', {
-                templateUrl: 'partials/items.tpl.html',
-                controller: 'ItemsController',
-                title: 'Items'
+            .when('/add-recipe', {
+                templateUrl: 'partials/add-recipe.tpl.html',
+                controller: 'AddRecipeController',
+                title: 'Add an recipe'
+            })
+            .when('/recipe-details/:recipeId', {
+                templateUrl: 'partials/recipe-details.tpl.html',
+                controller: 'RecipeDetailsController',
+                title: 'Recipe details'
+            })
+            .when('/edit-recipe/:recipeId', {
+                templateUrl: 'partials/edit-recipe.tpl.html',
+                controller: 'EditRecipeController',
+                title: 'Edit recipe'
             })
             .otherwise({
-                redirectTo: '/home'
+                redirectTo: '/recipes'
             });
 
             RestangularProvider.setBaseUrl('http://localhost:8001');

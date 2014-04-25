@@ -1,0 +1,11 @@
+<input type="text" ng-model="search.name">
+<a class="btn btn-xs btn-info" href="#/add-recipe">Add a recipe</a>
+
+<div ng-repeat="recipe in recipes | filter:search">
+    <p>
+        <a href="#/recipe-details/{{ recipe.id }}">{{ recipe.name }}</a>
+        <a class="btn btn-xs btn-info" href="#/edit-recipe/{{ recipe.id }}">Edit</a>
+    </p>
+    <p>Recipe time: {{ recipe.cook_time }}</p>
+    <p>Recipe description: {{  recipe.description }}</p>
+</div>

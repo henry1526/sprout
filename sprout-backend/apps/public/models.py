@@ -40,15 +40,25 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 #     class Meta:
 #         verbose_name_plural = 'Addresses'
-
-
-class Item(models.Model):
-    part_no = models.CharField(max_length=50)
+class Ingredient(models.Model):
     name = models.CharField(max_length=50)
+    glycemic_index = models.IntegerField()
+
+class Recipe(models.Model):
+    name = models.CharField(max_length=50)
+    ingredients = models.ManyToManyField('Ingredient')
+    cook_time = models.CharField(max_length=50)
+    COOK_METHODS = (
+        ('bake', 'Bake in the Oven'),
+        ('microwave', 'Microwave'),
+        ('fry', 'Frying Pan'),
+        ('dutch_oven', 'Dutch Oven'),
+    )
+    cook_method = models.CharField(max_length=50, choices=COOK_METHODS)
+    description = models.TextField()
 
     def __unicode__(self):
-        return "Name: " + self.name + ", part number: " + self.part_no
-
+        return self.name
 
 class Template(models.Model):
     part_no = models.CharField(max_length=50)
