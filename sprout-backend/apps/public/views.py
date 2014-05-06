@@ -16,20 +16,51 @@ from django.contrib.auth.models import User
 from .models import *
 from .serializers import *
 
+from rest_framework.authentication import TokenAuthentication
 
-class RecipeList(generics.ListCreateAPIView):
+@api_view(('GET',))
+def obtain_user_from_token(r, token):
+    auth = TokenAuthentication()
+    response = auth.authenticate_credentials(token)
+    user_id = response[0].id
+    return Response(user_id)
+
+class RecipeList(generics.ListAPIView):
     # permission_classes = (permissions.IsAuthenticated,)
     model = Recipe
-    serializer_class = RecipeSerializer
+    serializer_class = NestedRecipeSerializer
     queryset = Recipe.objects.all()
+
+class TagList(generics.ListCreateAPIView):
+    # permission_classes = (permissions.IsAuthenticated,)
+    model = Tag
+    serializer_class = TagSerializer
+    queryset = Tag.objects.all()
+
+class TagDetail(generics.RetrieveUpdateDestroyAPIView):
+    # permission_classes = (permissions.IsAuthenticated,)
+    model = Tag
+    serializer_class = TagSerializer
+    queryset = Tag.objects.all()
+
+class IngredientList(generics.ListCreateAPIView):
+    # permission_classes = (permissions.IsAuthenticated,)
+    model = Ingredient
+    serializer_class = IngredientSerializer
+    queryset = Ingredient.objects.all()
 
 
 class RecipeDetail(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = (permissions.IsAuthenticated,)
     model = Recipe
-    serializer_class = RecipeSerializer
+    serializer_class = NestedRecipeSerializer
     queryset = Recipe.objects.all()
 # Create your views here.
+
+class CreateRecipe(generics.CreateAPIView):
+    model = Recipe
+    serializer_class = RecipeSerializer
+    queryset = Recipe.objects.all()
 
 class UserList(generics.ListCreateAPIView):
     """List all users or create a new User"""

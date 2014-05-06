@@ -44,21 +44,36 @@ class Ingredient(models.Model):
     name = models.CharField(max_length=50)
     glycemic_index = models.IntegerField()
 
+    def __unicode__(self):
+        return self.name
+
+class Tag(models.Model):
+    name = models.TextField()
+
+    def __unicode__(self):
+        return self.name
+
 class Recipe(models.Model):
     name = models.CharField(max_length=50)
+    photo = models.ImageField(upload_to='photos', blank=True)
     ingredients = models.ManyToManyField('Ingredient')
     cook_time = models.CharField(max_length=50)
     COOK_METHODS = (
         ('bake', 'Bake in the Oven'),
+        ('broil', 'Broil'),
         ('microwave', 'Microwave'),
         ('fry', 'Frying Pan'),
         ('dutch_oven', 'Dutch Oven'),
+        ('stew', 'Stew'),
     )
     cook_method = models.CharField(max_length=50, choices=COOK_METHODS)
     description = models.TextField()
+    tags = models.ManyToManyField(Tag)
+    favorited_by = models.ManyToManyField(User)
 
     def __unicode__(self):
         return self.name
+
 
 class Template(models.Model):
     part_no = models.CharField(max_length=50)
@@ -112,3 +127,4 @@ class AttributeType(models.Model):
     #Material: leather
     #Thickness: really really thick
     #Print: True
+

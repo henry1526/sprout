@@ -2,6 +2,13 @@ import os
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 # Django settings for project.
 
+STATIC_URL = '/static/'
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/var/www/example.com/media/"
+MEDIA_ROOT = os.path.join(PROJECT_PATH, '..', "apps/public/media")
+
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',

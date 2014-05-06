@@ -9,4 +9,7 @@
 <label>Cook time</label>
 {{ recipe.cook_time }}
 </p>
-
+    <label>Ingredients:</label>
+    <p ng-repeat="ingredient in recipe.ingredients">
+    {{ ingredient.name }}
+</p>

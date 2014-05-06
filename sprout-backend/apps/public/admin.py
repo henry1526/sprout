@@ -6,4 +6,5 @@ from .models import *
 # admin.site.register(__MODEL-NAME__)
 admin.site.register(Recipe)
 admin.site.register(Ingredient)
+admin.site.register(Tag)
 

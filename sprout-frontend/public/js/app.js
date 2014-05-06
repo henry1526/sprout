@@ -38,6 +38,12 @@ var sproutApp = angular.module('sproutApp', [
                 controller: 'EditRecipeController',
                 title: 'Edit recipe'
             })
+            .when('/favorites', {
+                templateUrl: 'partials/edit-recipe.tpl.html',
+                controller: 'FavoritesController',
+                title: 'Favorites'
+            })
+
             .otherwise({
                 redirectTo: '/recipes'
             });

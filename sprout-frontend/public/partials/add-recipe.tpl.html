@@ -1,17 +1,118 @@
-<label>Name</label>
-<input type="text" ng-model="recipe.name">
-<br>
-<label>Cook Time</label>
-<input type="text" ng-model="recipe.cook_time">
-<br>
-<label>Cook Method</label>
-<select ng-model="recipe.cook_method" ng-options="method.stored_name as method.printed_name for method in methods"></select>
-<br>
-<label>Description</label>
-<input type="text" ng-model="recipe.description">
-<br>
-<button ng-click="saveNewRecipe()">Add Item</button>
-<br>
-{{ item }}
-<br>
-<p>{{ status }}</p>
+<section class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="margin-top-left">
+                <br>
+                <label> Name </label>
+                <input type="text" ng-model="recipe.name">
+            <br>
+            <br>
+                <label> Description </label>
+                <textarea ng-model="recipe.description"></textarea>
+             </div>
+        </div>
+            <!--<input type="text" ng-model="recipe.description">-->
+            <br>
+            <br>
+            <label> Cook time </label>
+            <input type="text" ng-model="recipe.cook_time">
+            <br>
+            <br>
+            <label> Cooking method </label>
+
+
+     <select ng-model="recipe.cook_method"
+                ng-options="method.stored_name as method.printed_name for method in methods">
+     </select>
+</section>
+    <br/>
+    <br/>
+
+    <!--<select multiple
+            ng-model = "recipe.ingredients"
+            ng-options="ingredient.id as ingredient.name for ingredient in ingredients"></select>-->
+
+    <input type="text"
+           ng-model="searchIngredient.name"
+           typeahead="ingredient.name for ingredient in ingredients | filter: $viewValue | limitTo: 8"
+            placeholder="Enter an ingredient."/>
+    <button ng-click="saveIngredient(ingredientName)">Add Ingredient</button>
+    <!-- <p ng-repeat="ingredient in ingredients | filter:searchIngredient">
+        <a href="javascript:void(0);"
+           ng-click="addIngredient(ingredient.id)"
+           ng-bind="ingredient.name"
+           ng-hide="!ingredient.active"></a>
+    </p> -->
+
+    Selected ingredients:
+    <span ng-repeat="ingredientId in recipe.ingredients">
+        <p ng-bind="getIngredientName(ingredientId)">
+        </p>
+        <i class="glyphicon glyphicon-remove-circle"></i>
+    </span>
+    <hr>
+    <br>
+    <strong>Selected Ingredients</strong>
+    <ol>
+
+    </ol>
+    <br>
+    <div class="col-md-3">
+    <button ng-click="saveNewRecipe()"> Add Item</button>
+    </div>
+
+<hr/>
+<div class="col-md-3">
+                <label>Tags</label>
+                <form ng-submit="saveTag(tagName)">
+                    <input id="tag-input"
+                       class="form-control form-inline"
+                       type="text"
+                       ng-model="tagName"
+                       typeahead="tag.name for tag in tags | filter:$viewValue | limitTo:8"
+                       placeholder="Enter a Tag">
+                </form>
+                <div>
+                    <button ng-repeat="tag in recipe.tags"
+                            ng-bind="tag.name"
+                            ng-click="removeTag(tag)"
+                            class="btn btn-sm btn-info label">
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="col-md-1">
+                <label>&nbsp;</label>
+                <button ng-click="saveTag(tagName)"
+                        class="add-tag-button btn btn-sm btn-info">Add Tag
+                </button>
+            </div>
+<hr/>
+
+    <br>
+    <div class="col-md-3">
+        <button ng-click="saveNewRecipe()" class="btn btn-lg btn-success glyphicon glyphicon-ok"> Add</button>
+     </div>
+    <br>
+    <!-- Start ingredient markup -->
+
+
+    <ol>
+        <li ng-repeat="ingredient in recipe.ingredients"
+            <span ng-bind="ingredient.name"></span>
+        </li>
+    </ol>
+    <!-- End ingredient markup -->
+
+    {{ recipe.tags }}
+    <br>
+    <br>
+    {{ item }}
+    <br>
+    <br>
+
+    <p>{{ recipe }}</p>
+
+    <p>{{ status }}</p>
+</div>

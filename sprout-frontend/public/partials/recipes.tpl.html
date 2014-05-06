@@ -1,11 +1,46 @@
+<br>
 <input type="text" ng-model="search.name">
 <a class="btn btn-xs btn-info" href="#/add-recipe">Add a recipe</a>
 
-<div ng-repeat="recipe in recipes | filter:search">
+<button ng-click="filterFavorites()"
+        class="btn btn-md btn-info">
+    <i class="glyphicon glyphicon-star"></i>
+</button>
+<br>
+<br>
+
+<div class="block" ng-repeat="recipe in recipes | filter:search">
     <p>
+        Favorited by: {{ recipe.favorited_by }}
         <a href="#/recipe-details/{{ recipe.id }}">{{ recipe.name }}</a>
+
+        <i ng-show="ifFavorited(recipe)"
+            class="glyphicon glyphicon-star"
+            style="font-size:1.5em;"
+            ng-click="unfavorite(recipe)"></i>
+
+         <i ng-show="!ifFavorited(recipe)"
+            class="glyphicon glyphicon-star-empty"
+            style="font-size:1.5em;"
+            ng-click="favorite(recipe)"></i>
+
         <a class="btn btn-xs btn-info" href="#/edit-recipe/{{ recipe.id }}">Edit</a>
+
     </p>
+    <div class="block-info">
+
+        <img class="recipe-thumbnail" src="{{ recipe.photo }}"/>
     <p>Recipe time: {{ recipe.cook_time }}</p>
     <p>Recipe description: {{  recipe.description }}</p>
+    <span class="label label-info label-margin"
+            ng-bind="tag.name"
+            ng-repeat="tag in recipe.tags">
+            </span>
+
+    </div>
+</div>
+
+<div class="container, col-md-12" style="...">
+
+
 </div>
